@@ -6,7 +6,7 @@ public class Program {
         Scanner scanner = new Scanner(System.in);
         
         // M1: Declaración de variables: 4 tipos primitivos 
-        int cantidadJugadores = 5;
+        int cantidadJugadores = 3;
         double pingPromedio = 0.0; 
         boolean servidorActivo = true;
         char rangoDefault = 'U'; 
@@ -15,6 +15,7 @@ public class Program {
         System.out.println("==== SISTEMA DE ESTADISTICAS MCGUAT ====");
         System.out.println("Estado del Servidor: " + (servidorActivo ? "ONLINE" : "OFFLINE"));
         System.out.println("Rango de nuevos jugadores: [" + rangoDefault + "]");
+        System.out.println("Ping Promedio anterior: " + pingPromedio + " ms");
         
         // Llamada a los métodos modulares
         procesarPingsUnidimensional(scanner, cantidadJugadores);
@@ -72,12 +73,13 @@ public class Program {
         System.out.println("\n>>> RESUMEN DE CONEXIÓN <<<");
         System.out.println("Ping Máximo registrado: " + max + " ms");
         System.out.println("Ping Mínimo registrado: " + min + " ms");
-        System.out.println("Ping Promedio global: " + promedio + " ms");
+        System.out.println("Ping Promedio global: " + promedio + " ms"); // uso de variable primitiva double para mostrar promedio con decimales
+        
     }
 
     // M4 Array Bidimensional: Recursos, formato de tabla y sumatorias Area visual
     public static void procesarRecursosBidimensional(Scanner scanner) { // método para procesar recursos minados por jugadores
-        System.out.println("\n--- MÓDULO DE RECURSOS MINADOS (Arreglo 2D) ---");
+        System.out.println("\n--- MODULO DE RECURSOS MINADOS (Arreglo 2D) ---");
         int filas = 3; // 3 jugadores de muestra
         int columnas = 2; // 2 recursos: Diamantes y Hierro
         int[][] recursos = new int[filas][columnas]; // matriz para almacenar los recursos minados por cada jugador
@@ -98,5 +100,23 @@ public class Program {
         for (int i = 0; i < filas; i++) {
             totalDiamantes += recursos[i][0]; 
             totalHierro += recursos[i][1]; // acumulación de recursos
+
         }
-    
+        // Recorrido de la matriz para imprimir tabla ordenada y hacer cálculos simples
+        for (int i = 0; i < filas; i++) {
+            System.out.print("J" + (i + 1) + "\t| "); // imprimir jugador
+            for (int j = 0; j < columnas; j++) { // imprimir recursos
+                System.out.print(recursos[i][j] + "\t\t| ");
+                if (j == 0) totalDiamantes += recursos[i][j]; // acumulación de diamantes
+                if (j == 1) totalHierro += recursos[i][j];
+            }
+            System.out.println();
+        }
+        
+        System.out.println("---------------------------------");
+        System.out.println("TOTAL RECAUDADO:");
+        System.out.println("Diamantes Totales: " + totalDiamantes);
+        System.out.println("Hierro Total: " + totalHierro);
+        // finalización del módulo de recursos y del programa entero jeje
+    }
+}
