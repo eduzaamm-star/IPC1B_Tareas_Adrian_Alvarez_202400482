@@ -74,3 +74,29 @@ public class Program {
         System.out.println("Ping Mínimo registrado: " + min + " ms");
         System.out.println("Ping Promedio global: " + promedio + " ms");
     }
+
+    // M4 Array Bidimensional: Recursos, formato de tabla y sumatorias Area visual
+    public static void procesarRecursosBidimensional(Scanner scanner) { // método para procesar recursos minados por jugadores
+        System.out.println("\n--- MÓDULO DE RECURSOS MINADOS (Arreglo 2D) ---");
+        int filas = 3; // 3 jugadores de muestra
+        int columnas = 2; // 2 recursos: Diamantes y Hierro
+        int[][] recursos = new int[filas][columnas]; // matriz para almacenar los recursos minados por cada jugador
+
+        // Llenado de la matriz con validación
+        for (int i = 0; i < filas; i++) {
+            System.out.println("Datos del Jugador " + (i + 1) + ":");
+            recursos[i][0] = solicitarEnteroValido(scanner, "  Diamantes minados (0 - 64): ", 0, 64); // validación de diamantes entre 0 y 64
+            recursos[i][1] = solicitarEnteroValido(scanner, "  Hierro minado (0 - 64): ", 0, 64); // validación de hierro entre 0 y 64
+        }
+
+        System.out.println("\n>>> INVENTARIO DEL SERVIDOR <<<");
+        System.out.println("Jugador\t| Diamantes\t| Hierro");
+        System.out.println("---------------------------------");
+        
+        int totalDiamantes = 0; // acumulador para diamantes
+        int totalHierro = 0; // acumulador para hierro
+        for (int i = 0; i < filas; i++) {
+            totalDiamantes += recursos[i][0]; 
+            totalHierro += recursos[i][1]; // acumulación de recursos
+        }
+    
